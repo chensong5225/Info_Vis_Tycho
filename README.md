@@ -22,20 +22,6 @@ In the last week of class, each group will give an ignite presentation (5 minute
 
 ## Topics:
 
-### Pittsburgh Bike Share
-
-• Data(2015Q2&Q4,2017Q2) available for download.  
-• Potential task: Visualizing Bike Sharing Patterns  
-• e.g., analysis of bike sharing demand  
-• why important? “rebalancing” problem  
-• You may conduct a pilot user study to understand
-whether your design works or not.  
-• Other useful information  
-• Weather information: NCDC API, i-weather and others  
-• Holiday schedules: from the city  
-
-### Exploring Regional Governance in US
-
 ### Project Tycho
 
 Generate visualizations for exploring the epidemiological data from Project Tycho [VPGJ+13]  
@@ -43,4 +29,19 @@ Generate visualizations for exploring the epidemiological data from Project Tych
 • Read the paper [VPGJ+1] to understand what information is included in the dataset. Skim the paper [MSvPF14] to get an idea about what could be interesting to show.  
 • Potential task: Design and implement a visualization system for users to explore the dataset. You may conduct a pilot user study to understand whether your design works or not.
 
-### Twitter in Candidate Debates
+### Reference and Design
+https://bl.ocks.org/kerryrodden/7090426
+第一个图是折线图，横坐标是年份，纵坐标是死亡人数，一共有51个折线，旁边有一个下拉选择框，可以选择特定的病毒种类。
+需要注意的情况：
+1.清晰的把线标出来
+2.每条线5年／10年标出notation
+
+第二个图是tree图（https://bl.ocks.org/kerryrodden/7090426）大的环形有三层，第一层是美国的地区：东北，西南，西北，岛屿等，第二层是位于这个方位的州，第三层是该州的疾病类型。
+需要注意的情况：
+在圆环中间需要加备注,备注某一种病在州内的百分比（需要计算某种疾病的百分比）
+
+第三个图是地图～（谢静然说他能自己解决，还能预处理差值，把city坐标经纬度带入就好了）
+
+可能做的图：node -link反应relationship
+barchar， 和tree做的差不多，二选一就可以了
+
