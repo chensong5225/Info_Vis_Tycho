@@ -45,3 +45,6 @@ https://bl.ocks.org/kerryrodden/7090426
 可能做的图：node -link反应relationship
 barchar， 和tree做的差不多，二选一就可以了
 
+### data
+
+see google drive https://drive.google.com/drive/folders/0B3YIF4fcqxtkSnBwck1vendtWnc?usp=sharing
