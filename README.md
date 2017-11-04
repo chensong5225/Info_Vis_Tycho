@@ -46,8 +46,8 @@ https://bl.ocks.org/kerryrodden/7090426
 barchar， 和tree做的差不多，二选一就可以了
 
 ### data
-数据已经处理完了，data_year.json的结构为:
- 	disease : ["year":int,"state",str,"cases":int,"rate":float]
-data_week.csv:为原始数据分割出两列，year和week
-以后若有其他需要添加的数据一律放在data文件夹下
+数据已经处理完了，data_year.json的结构为:  
+ 	disease : ["year":int,"state",str,"cases":int,"rate":float]  
+data_week.csv:为原始数据分割出两列，year和week  
+以后若有其他需要添加的数据一律放在data文件夹下  
 see google drive https://drive.google.com/drive/folders/0B3YIF4fcqxtkSnBwck1vendtWnc?usp=sharing
