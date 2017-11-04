@@ -20,6 +20,15 @@ The progress report should be in the same format as your final report. It will b
 
 In the last week of class, each group will give an ignite presentation (5 minutes each; 20 slides with each slide advancing automatically after 15 seconds). The final paper should be 4--8 pages in length following the ACM SIG format (http://www.acm.org/sigs/publications/proceedings-templates). You should describe your problem, approach, dataset, data analysis, evaluation, discussion, references, and so on, in sufficient details, and you need to show supporting evidence in tables and/or figures. You need to provide captions for all tables and figures. You should also briefly describe how each member contributes to the total work in the end of the report. The final project will be graded largely based on the final presentation and paper. Late days will not apply to the final reports.
 
+
+## Notice
+### js script
+The d3 script of each graph should be separately saved into a .js file. All the scripts save in the script folder and all the data save in data folder.  
+### HTML
+Each problem or graph should be in a HTML file. If it is necessary to merge, we do it after all graphs are done.  
+### CSS
+If has to us CSS, use the same name as the graph's HTML files and remove some global styles. In case we may use some global styles for all graphs. All css files save in script/css folder.  
+
 ## Topics:
 
 ### Project Tycho
@@ -28,6 +37,8 @@ Generate visualizations for exploring the epidemiological data from Project Tych
 • Download data from Tycho: https://www.tycho.pitt.edu/data/level1.php  
 • Read the paper [VPGJ+1] to understand what information is included in the dataset. Skim the paper [MSvPF14] to get an idea about what could be interesting to show.  
 • Potential task: Design and implement a visualization system for users to explore the dataset. You may conduct a pilot user study to understand whether your design works or not.
+
+
 
 ### Reference and Design
 https://bl.ocks.org/kerryrodden/7090426
