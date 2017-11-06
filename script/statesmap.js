@@ -251,7 +251,7 @@
             
             html += "</span>";
             html += "<span class=\"tooltip_value\">";
-            html += "Death Rate: "+rbn.get(d.properties.name)+"%";
+            html += "Incidence Rate: "+rbn.get(d.properties.name)+"%";
             html += "<br>";
             html += "Cases: "+nbn.get(d.properties.name);
             html += "";
