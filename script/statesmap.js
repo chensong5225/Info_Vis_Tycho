@@ -7,9 +7,9 @@
           .append('svg')
           .attr("width", width)
           .attr("height", height);
-
-          console.log(svg);
-
+      var projection = d3.geo.albersUsa()
+          .translate([width/2, height/2])
+          .scale([SCALE]);
       color_config = [
           '#fff7ec',
           '#fee8c8',
@@ -21,6 +21,7 @@
           '#b30000',
           '#7f0000'
       ]
+    var flag = -1;
       bound = [0,0.01,0.02,0.04,0.08,0.15,0.3,0.8,1.5]
       disease = ['DIPHTHERIA', 'MUMPS', 'SMALLPOX', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
       disease.forEach(function(d){
@@ -29,12 +30,15 @@
 
 
 
+      
+
       var usDataUrl = "script/map/us-states.json",
-           citiesDataUrl = 'script/map/us-cities.csv';
+          citiesDataUrl = 'script/map/data_year_city.json';
       var code2name = d3.map()
       var rateByname = d3.map();
       var numByname = d3.map();
 
+      disease = 'DIPHTHERIA';
       year = 1916;
       txt = "Current map shows incidence rate of ";
 
@@ -47,6 +51,7 @@
         .attr("id", "year");
       d3.select("body").insert("h2", ":first-child")
 
+
       d3.tsv("script/map/us-state-names.tsv", function(error, name) {
         name.forEach(function(d) {
                 code2name.set(d['code'], d['name']);
@@ -57,25 +62,83 @@
       updatemap()
       legend(rateByname)
 
-      d3.select("#year").on("input", function() {
-          year = this.value;
-          updatemap()
-      });
-
       function updatemap(){
 
-        var  myselect=document.getElementById("disease");
-        var index =myselect.selectedIndex ;
-        var disease = myselect.options[index].value;
-        d3.select("body").select("h2").text(txt+disease+' in '+year);
-        d3.json("data/data_year_state.json",function(error,data){
+      queue()
+        .defer(d3.json, 'data/data_year_state.json')
+        .defer(d3.json, 'data/data_city.json')
+        .await(function (error, data,city) {
             if (error) throw error;
+          var disease = document.getElementById("disease").value;
+          if(disease!= 'DIPHTHERIA')
+          {
+            flag =-1;
+            var checkbox = document.getElementById('city')
+            checkbox.checked = false;
+            $("label").hide();
+          }
+          else
+            $("label").show();
+          updatestates(year,disease,data)
+          if(flag == 1)
+          {          
+            c = city[year]
+              svg.selectAll('circle')
+                  .data(c)
+                  .enter()
+                  .append('circle')
+                  .attr('cx',function(d){ var location = projection([d.lon, d.lat])
+                    return location[0];})
+                  .attr('cy',function(d){ var location = projection([d.lon, d.lat]) 
+                    return location[1];})
+                  .attr('r',function(d){ 
+                    console.log(d.cases)
+                    return Math.sqrt(d.cases)/2;})
+                  .style('fill','blue')
+                  .style('opacity', 0.5)
+            }
+            else
+              svg.selectAll('circle').remove()
+        d3.select("#year").on("input", function() {
+            year = this.value;
+            updatestates(year,disease,data)
+            if(flag == 1)
+              updatecity(city[year])
+          });
+        }) //d3.json
+      }
+      function city()
+      {
+        flag = -flag;
+        updatemap()
+      }
+      function draw()
+      {
+
+        queue()
+            .defer(d3.json, usDataUrl)
+            .await(function (error, states) {
+                var path = d3.geo.path();
+                path.projection(projection);
+
+                svg.selectAll('path')
+                    .data(states.features)
+                    .enter()
+                    .append('path')
+                    .attr('d', path)
+                    .style("stroke","black")
+                    .style("fill","white")
+            });//await
+      }//draw
+
+      function updatestates(year,disease,data)
+      {
           data[disease][year].forEach(function(d){
             rateByname.set(code2name.get(d.state), d.rate);
             numByname.set(code2name.get(d.state), d.cases);
           })
-         console.log(rateByname)
-         svg.selectAll("path")
+
+          svg.selectAll("path")
               .style("fill",function(d){
                 var v = rateByname.get(d.properties.name)
                 //console.log(v)
@@ -87,57 +150,24 @@
                     return color_config[i-1]
                 }
               })
-        .on("mousemove",function(d) {
+              .on("mousemove",function(d) {
                       $(this).attr("fill-opacity", "0.8");
                       mousemovemap(d,rateByname,numByname)})
-        .on("mouseout", function() {
+              .on("mouseout", function() {
                 $(this).attr("fill-opacity", "1.0");
                 $("#tooltip-container").hide();
-            });
-           // });//await
-        }) //d3.json
-
+              });
       }
-
-      function draw()
-      {
-
-        queue()
-            .defer(d3.json, usDataUrl)
-            .defer(d3.csv, citiesDataUrl)
-            .await(function (error, states, cities) {
-                var path = d3.geo.path();
-                var projection = d3.geo.albersUsa()
-                    .translate([width/2, height/2])
-                    .scale([SCALE]);
-                path.projection(projection);
-
-                svg.selectAll('path')
-                    .data(states.features)
-                    .enter()
-                    .append('path')
-                    .attr('d', path)
-                    .style("stroke","black")
-                    .style("fill","white")
-
-
-                // svg.selectAll('circle')
-                //           .data(cities)
-                //           .enter()
-                //           .append('circle')
-                //           .each(function (d) {
-                //               var location = projection([d.longitude, d.latitude]);
-                //               d3.select(this).attr({
-                //                   cx: location[0], cy: location[1],
-                //                   r: Math.sqrt(+d.population * 0.00004)
-                //               });
-                //           })
-                //           .style({
-                //               fill: 'blue',
-                //               opacity: 0.75
-                //           });
-            });//await
-      }//draw
+      function updatecity(data)
+      {  
+            svg.selectAll('circle')
+                .data(data)
+                .attr('r',function(d){ 
+                  console.log(d.cases)
+                  return Math.sqrt(d.cases)/2;})
+                .style('fill','blue')
+                .style('opacity', 0.5)
+      }
 
       function legend_h(data)
       {
@@ -261,7 +291,6 @@
 
             $("#tooltip-container").html(html);
             $("#tooltip-container").show();
-
             d3.select("#tooltip-container")
               .style("top", (d3.event.layerY + 15) + "px")
               .style("left", (d3.event.layerX + 15) + "px");
