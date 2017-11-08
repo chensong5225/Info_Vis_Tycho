@@ -3,12 +3,13 @@
       var scale = 8
       var w = 20
       var SCALE = 1000 //control size of map
-      var svg = d3.select('body').select('#map')
+      var svg = d3.select('div#map')
           .append('svg')
-          .attr({
-              width: width,
-              height: height
-          });
+          .attr("width", width)
+          .attr("height", height);
+
+          console.log(svg);
+
       color_config = [
           '#fff7ec',
           '#fee8c8',
@@ -23,7 +24,7 @@
       bound = [0,0.01,0.02,0.04,0.08,0.15,0.3,0.8,1.5]
       disease = ['DIPHTHERIA', 'MUMPS', 'SMALLPOX', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
       disease.forEach(function(d){
-      document.getElementById('disease').options.add(new Option(d,d)); 
+      document.getElementById('disease').options.add(new Option(d,d));
     })
 
 
@@ -45,10 +46,10 @@
         .attr("value", year)
         .attr("id", "year");
       d3.select("body").insert("h2", ":first-child")
-      
+
       d3.tsv("script/map/us-state-names.tsv", function(error, name) {
-        name.forEach(function(d) {              
-                code2name.set(d['code'], d['name']); 
+        name.forEach(function(d) {
+                code2name.set(d['code'], d['name']);
               });
              }); //d3.tsv
 
@@ -56,7 +57,7 @@
       updatemap()
       legend(rateByname)
 
-      d3.select("#year").on("input", function() { 
+      d3.select("#year").on("input", function() {
           year = this.value;
           updatemap()
       });
@@ -64,7 +65,7 @@
       function updatemap(){
 
         var  myselect=document.getElementById("disease");
-        var index =myselect.selectedIndex ; 
+        var index =myselect.selectedIndex ;
         var disease = myselect.options[index].value;
         d3.select("body").select("h2").text(txt+disease+' in '+year);
         d3.json("data/data_year_state.json",function(error,data){
@@ -99,8 +100,8 @@
       }
 
       function draw()
-      {  
-            
+      {
+
         queue()
             .defer(d3.json, usDataUrl)
             .defer(d3.csv, citiesDataUrl)
@@ -158,7 +159,7 @@
               .style('font-size','12px')
               .attr("x",width/2+i*w-0.5*w)
               .attr("y",function (d) {
-                if(i%2 == 1) 
+                if(i%2 == 1)
                   return 20-0.2*w;
                 else return 20 + 1.7*w})
               .text(bound[i])
@@ -178,7 +179,7 @@
             .attr('y',20)
             .attr('width',w)
             .attr('height',w)
-            .on("mouseover",function(d,i){ 
+            .on("mouseover",function(d,i){
                 legendmouseover(i,rbn)
             })
             .on('mouseout',function(d,i){
@@ -194,7 +195,7 @@
             .style('font-size','12px')
             .attr("x",function(d,i) {return width/2+i*w-0.5*w})
             .attr("y",function (d,i) {
-                  if(i%2 == 1) 
+                  if(i%2 == 1)
                     return 20-0.2*w;
                   else return 20 + 1.7*w})
             .text(function(d,i) {
@@ -244,11 +245,11 @@
 
       function mousemovemap(d,rbn,nbn) {
             var html = "";
-  
+
             html += "<div class=\"tooltip_kv\">";
             html += "<span class=\"tooltip_key\">";
             html += d.properties.name;
-            
+
             html += "</span>";
             html += "<span class=\"tooltip_value\">";
             html += "Incidence Rate: "+rbn.get(d.properties.name)+"%";
@@ -257,7 +258,7 @@
             html += "";
             html += "</span>";
             html += "</div>";
-            
+
             $("#tooltip-container").html(html);
             $("#tooltip-container").show();
 
