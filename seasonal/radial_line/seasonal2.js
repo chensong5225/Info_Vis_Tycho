@@ -1,5 +1,5 @@
 //从csv导入，1916年DIPHTHERIA，一条线
-d3.csv("data_week.csv")
+d3.csv("../data_week.csv")
   .row(function(d){ return {disease:d.disease, year:Number(d.year), week:Number(d.week), cases:Number(d.cases)}; })
   .get(function(error,data){
     //console.log(data);

@@ -1,7 +1,7 @@
 //从json导入，DIPHTHERIA，1916年一条环装线
 disease = "DIPHTHERIA";
 
-d3.json("data_week_state.json").get(function(error,data){
+d3.json("../data_week_state.json").get(function(error,data){
   var byDisease = data[disease];
 
   var height = 600;

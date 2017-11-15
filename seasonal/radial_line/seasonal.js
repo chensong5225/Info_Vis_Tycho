@@ -1,5 +1,5 @@
 //从json导入，DIPHTHERIA，每年一条线
-d3.json("data_week_state.json").get(function(error,data){
+d3.json("../data_week_state.json").get(function(error,data){
 
 //   var diphtheria = data.DIPHTHERIA;
 //
