@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="script/d3slider/d3.slider.css" media="screen" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script src="http://d3js.org/d3.v4.js"></script>
+<script src="script/d3slider/d3.slider.js"></script>
+<meta charset="utf-8">
+<style type="text/css">
+	
+body {
+    font-family:"Helvetica Neue";
+    color: #686765;
+}
+.name {
+    float:right;
+    color:#27aae1;
+}
+.axis {
+    fill: none;
+    stroke: #AAA;
+    stroke-width: 1px;
+    font-size: 20px;
+}
+text {
+    stroke: none;
+    fill: #666666;
+    font-size: .6em;
+    font-family:"Helvetica Neue"
+}
+.label {
+    fill: #414241;
+}
+.node {
+    cursor:pointer;
+}
+.dot {
+    opacity: .7;
+    cursor: pointer;
+}
+
+</style>
+
+
+
+<body>
+
+<h3>Visual Analytics Course - Oxford University</h3>
+
+<p>Diseases:<select id="disease" onchange="updatescatter()">
+          </select></p>
+<div id="slider"></div>
+<div id="scatter-load"></div>
+
+
+<script type="text/javascript" src="script/scatterplot.js"></script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 
+      
       var width = 1000, height = 600;
       var scale = 8
       var w = 20
@@ -21,16 +22,15 @@
           '#b30000',
           '#7f0000'
       ]
+
     var flag = -1;
       bound = [0,0.01,0.02,0.04,0.08,0.15,0.3,0.8,1.5]
-      disease = ['DIPHTHERIA', 'MUMPS', 'SMALLPOX', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
-      disease.forEach(function(d){
+      diseasegroup = ['DIPHTHERIA', 'MUMPS', 'SMALLPOX', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
+      diseasegroup.forEach(function(d){
       document.getElementById('disease').options.add(new Option(d,d));
     })
 
 
-
-      
 
       var usDataUrl = "script/map/us-states.json",
           citiesDataUrl = 'script/map/data_year_city.json';
@@ -43,13 +43,14 @@
       txt = "Current map shows incidence rate of ";
 
       d3.select("body").insert("p", ":first-child").append("input")
-        .style("width","300px")
+        .style("width","600px")
         .attr("type", "range")
         .attr("min", "1916")
         .attr("max", "2011")
         .attr("value", year)
         .attr("id", "year");
-      d3.select("body").insert("h2", ":first-child")
+
+      d3.select("body").insert("h2", ":first-child").text(year)
 
 
       d3.tsv("script/map/us-state-names.tsv", function(error, name) {
@@ -82,7 +83,7 @@
           updatestates(year,disease,data)
           if(flag == 1)
           {          
-            c = city[year]
+              c = city[year]
               svg.selectAll('circle')
                   .data(c)
                   .enter()
@@ -101,10 +102,12 @@
               svg.selectAll('circle').remove()
         d3.select("#year").on("input", function() {
             year = this.value;
+            d3.select("body").select("h2").text(year)
             updatestates(year,disease,data)
             if(flag == 1)
               updatecity(city[year])
           });
+
         }) //d3.json
       }
       function city()
@@ -112,6 +115,7 @@
         flag = -flag;
         updatemap()
       }
+
       function draw()
       {
 
@@ -138,7 +142,8 @@
             numByname.set(code2name.get(d.state), d.cases);
           })
 
-          svg.selectAll("path")
+          svg.selectAll("path").transition()
+              .delay(100)
               .style("fill",function(d){
                 var v = rateByname.get(d.properties.name)
                 //console.log(v)
@@ -150,6 +155,7 @@
                     return color_config[i-1]
                 }
               })
+            svg.selectAll("path")
               .on("mousemove",function(d) {
                       $(this).attr("fill-opacity", "0.8");
                       mousemovemap(d,rateByname,numByname)})
