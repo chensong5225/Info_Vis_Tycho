@@ -1,5 +1,10 @@
 # INFSCI 2415 Information Visualization Term Project
 
+## link to report on overleaf:
+[progress report](https://www.overleaf.com/12229336zhhhdmntsqpr)  
+[final report](https://www.overleaf.com/12229363kznfdxqqttpx)
+
+
 ## Project Description:
 
 **Milestones**  
