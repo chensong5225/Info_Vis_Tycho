@@ -86,28 +86,3 @@ d3.json("../data_week_state.json").get(function(error,data){
 
 
 });
-
-
-// path:hover{
-//
-// fill:#9b59b6;
-// }
-//
-// .tooltip {
-// 	background: #eee;
-// 	box-shadow: 0 0 5px #999999;
-// 	color: #333;
-// 	font-size: 12px;
-// 	left: 130px;
-// 	padding: 10px;
-// 	position: absolute;
-// 	text-align: center;
-// 	top: 95px;
-// 	z-index: 10;
-// 	display: block;
-// 	opacity: 0;
-// }
-//
-// .title{
-// font-size:16px;
-// }

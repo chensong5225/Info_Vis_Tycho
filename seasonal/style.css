@@ -4,7 +4,15 @@ html, body {
   height: 100%;
 }
 
-div {
+.aline {
+  float: center;
+  overflow: auto;
+  width: 1280px;
+  height: 364px;
+  margin: auto;
+}
+
+.unload {
   width: 312px;
   height: 360px;
   float: left;
@@ -12,5 +20,36 @@ div {
   border-style: solid;
   border-color: white;
   border-width:2px;
-  border-radius:25px; /* prefix not needed anymore */
+  border-radius:20px;
+}
+
+.load {
+  margin-right: auto;
+  margin-left: auto;
+  width: 580px;
+  height: 650px;
+  float: center;
+}
+
+.load path:hover{
+fill:#9b59b6;
+}
+
+.tooltip {
+	background: #eee;
+	box-shadow: 0 0 5px #999999;
+	color: #333;
+	font-size: 12px;
+	left: 130px;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	top: 95px;
+	z-index: 10;
+	display: block;
+	opacity: 0;
+}
+
+.title{
+font-size:16px;
 }

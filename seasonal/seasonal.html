@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Seasonal pattern of diseases</title>
+		<title>seasonal pattern of diseases</title>
 		<link rel="stylesheet" type="text/css" href="style.css" >
 
 		<script src="d3.v3.js"></script>
@@ -11,24 +11,36 @@
 	<body>
 		<script type="text/javascript" src="seasonal_final.js"></script>
 		<script type="text/javascript" src="circularHeatChart.js"></script>
-		<div id="DIPHTHERIA"><p align="center">DIPHTHERIA, 1916-1949</div>
-		<div id="MUMPS"><p align="center">MUMPS, 1965-1998</div>
-		<div id="SMALLPOX"><p align="center">SMALLPOX, 1925-1958</div>
-		<div id="MEASLES"><p align="center">MEASLES, 1928-1981</div>
-		<div id="HEPATITIS"><p align="center">HEPATITIS A, 1966-2010</div>
-		<div id="RUBELLA"><p align="center">RUBELLA, 1965-1998</div>
-		<div id="PERTUSSIS"><p align="center">PERTUSSIS, 1938-2010</div>
-		<div id="POLIO"><p align="center">POLIO, 1928-1961</div>
 
+		<h1 align="center">seasonal pattern of diseases</h1>
+		<h3 align="center">Click each disease to see the details and click again to go back.</h3>
 
-		<div id="DIPHTHERIA-load" style="display: none;"></div>
-		<div id="MUMPS-load" style="display: none;"></div>
-		<div id="SMALLPOX-load" style="display: none;"></div>
-		<div id="MEASLES-load" style="display: none;"></div>
-		<div id="HEPATITIS-load" style="display: none;"></div>
-		<div id="RUBELLA-load" style="display: none;"></div>
-		<div id="PERTUSSIS-load" style="display: none;"></div>
-		<div id="POLIO-load" style="display: none;"></div>
+		<div id="first">
+			<div class="aline">
+				<div class="unload", id="DIPHTHERIA"><p align="center">DIPHTHERIA, 1916-1949</div>
+				<div class="unload", id="MUMPS"><p align="center">MUMPS, 1965-1998</div>
+				<div class="unload", id="SMALLPOX"><p align="center">SMALLPOX, 1925-1958</div>
+				<div class="unload", id="MEASLES"><p align="center">MEASLES, 1928-1981</div>
+      </div>
+			<div class="aline">
+				<div class="unload", id="HEPATITIS"><p align="center">HEPATITIS A, 1966-2010</div>
+				<div class="unload", id="RUBELLA"><p align="center">RUBELLA, 1965-1998</div>
+				<div class="unload", id="PERTUSSIS"><p align="center">PERTUSSIS, 1938-2010</div>
+				<div class="unload", id="POLIO"><p align="center">POLIO, 1928-1961</div>
+      </div>
+		</div>
+
+    <div id="second">
+			<div class="load", id="DIPHTHERIA-load", style="display:none;"><p align="center">DIPHTHERIA, 1916-1949</div>
+			<div class="load", id="MUMPS-load", style="display:none;"><p align="center">MUMPS, 1965-1998</div>
+			<div class="load", id="SMALLPOX-load", style="display:none;"><p align="center">SMALLPOX, 1925-1958</div>
+			<div class="load", id="MEASLES-load", style="display:none;"><p align="center">MEASLES, 1928-1981</div>
+			<div class="load", id="HEPATITIS-load", style="display:none;"><p align="center">HEPATITIS A, 1966-201</div>
+			<div class="load", id="RUBELLA-load", style="display:none;"><p align="center">RUBELLA, 1965-1998</div>
+			<div class="load", id="PERTUSSIS-load", style="display:none;"><p align="center">PERTUSSIS, 1938-2010</div>
+			<div class="load", id="POLIO-load", style="display:none;"><p align="center">POLIO, 1928-1961</div>
+	  </div>
+
   </body>
 
 </html>
