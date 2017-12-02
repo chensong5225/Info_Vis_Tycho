@@ -6,6 +6,10 @@ var month = ['JAN'," "," "," ",'FEB'," "," "," ",'MAR'," "," "," "," ",
 'JUL'," "," "," "," ",'AUG'," "," "," ",'SEP'," "," "," ",
 'OCT'," "," "," ",'NOV'," "," "," ",'DEC'," "," "," "," "];
 
+var color_config2 = ['#FFFFFF','#FF0000'];
+var color_config10 = ['#ffffff','#ffe5e5','#ffcccc','#ffb2b2','#ff9999','#ff7f7f','#ff6666','#ff4c4c','#ff3232','#ff1919','#ff0000'];
+
+
 d3.json("data_week_state.json").get(function(error, data){
 
   //console.log(data);
@@ -22,6 +26,13 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr('class', 'rate');
 
   var domain = [0, 5000]
+
+//legend
+  var svg = d3.select('div.legend').append('svg')
+        .attr("height","100%")
+        .attr("width","100%")
+
+  legend(domain);
 
 //DIPHTHERIA
   var DIPHTHERIA = [];
@@ -44,13 +55,13 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_D);
 
   chart_D.accessor(function(d) {return d.cases;});
 
-  var svg1 = d3.select('div#'+"DIPHTHERIA")//
+  var svg = d3.select('div#'+"DIPHTHERIA")//
       .selectAll('svg')
       .data([DIPHTHERIA])
       .enter()
@@ -80,7 +91,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_M);
 
@@ -116,7 +127,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_S);
 
@@ -153,7 +164,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_ME);
 
@@ -189,7 +200,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_H);
 
@@ -225,7 +236,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_R);
 
@@ -261,7 +272,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_P);
 
@@ -297,7 +308,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_PO);
 
@@ -312,13 +323,18 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_PO);
 
+//legend
+
+   // var svg = d3.select("div.legend").append(svg).attr("width",100).attr("height",30);
+   // legend(domain);
+
 //loaded graph
   var chart_D_load = circularHeatChart()
       .segmentHeight(8)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_D)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_D);
 
@@ -355,7 +371,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_M)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_M);
 
@@ -393,7 +409,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_S)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_S);
 
@@ -431,7 +447,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_ME)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_ME);
 
@@ -469,7 +485,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_H)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_H);
 
@@ -507,7 +523,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_R)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_R);
 
@@ -545,7 +561,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_P)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_P);
 
@@ -582,7 +598,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .innerRadius(0)
       .numSegments(52)
       .domain(domain_PO)
-      .range(['white', 'red'])
+      .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_PO);
 
@@ -711,5 +727,30 @@ d3.json("data_week_state.json").get(function(error, data){
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
   });
+
+
+//legend
+ function legend(domain){
+  var g = svg.append('g')
+    .attr('class','legend');
+
+  g.selectAll('rect')
+    .data(color_config10)
+      .enter()
+      .append("rect")
+      .attr("fill", function(d,i) { return color_config10[i]; })
+      .attr('x',function(d,i){ return 30+i*10; })
+      .attr('y',0)
+      .attr('width',10)
+      .attr('height',10)
+      .attr('class',function(d,i){ return i+'';});
+
+  g.append("text")
+      .text('Cases: 0........................................>5000')
+      .attr('x',2)
+      .attr('y',20)
+      .attr("fill", "black")
+      .attr('font-size',10);
+  };
 
 });

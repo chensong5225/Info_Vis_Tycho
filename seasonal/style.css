@@ -1,14 +1,20 @@
 html, body {
-  margin: 10px;
+  margin: 10;
   width: 100%;
   height: 100%;
 }
 
 .aline {
   float: center;
-  overflow: auto;
   width: 1280px;
   height: 364px;
+  margin: auto;
+}
+
+.legend {
+  float: center;
+  width: 1280px;
+  height: 30px;
   margin: auto;
 }
 
