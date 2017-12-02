@@ -32,7 +32,7 @@ d3.json("data_week_state.json").get(function(error, data){
         .attr("height","100%")
         .attr("width","100%")
 
-  legend(domain);
+  legend(svg);
 
 //DIPHTHERIA
   var DIPHTHERIA = [];
@@ -333,7 +333,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(8)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_D)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_D);
@@ -348,6 +348,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("height","100%")
       .attr("width","100%")
       .call(chart_D_load);
+
 
       svga.selectAll("path")
       .on('mouseover', function(d) {
@@ -370,7 +371,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(8)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_M)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_M);
@@ -408,7 +409,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(8)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_S)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_S);
@@ -446,7 +447,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(5)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_ME)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_ME);
@@ -484,7 +485,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(5.9)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_H)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_H);
@@ -522,7 +523,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(8)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_R)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_R);
@@ -560,7 +561,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(3.7)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_P)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_P);
@@ -597,7 +598,7 @@ d3.json("data_week_state.json").get(function(error, data){
       .segmentHeight(8)
       .innerRadius(0)
       .numSegments(52)
-      .domain(domain_PO)
+      .domain(domain)
       .range(color_config2)
       .segmentLabels(month)
       .radialLabels(year_PO);
@@ -730,7 +731,7 @@ d3.json("data_week_state.json").get(function(error, data){
 
 
 //legend
- function legend(domain){
+ function legend(svg){
   var g = svg.append('g')
     .attr('class','legend');
 
