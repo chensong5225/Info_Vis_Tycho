@@ -31,7 +31,7 @@
 #play-button {
   position: absolute;
   top: 320px;
-  left: 200px;
+  left: 130px;
   background: #f08080;
   padding-right: 26px;
   border-radius: 3px;
@@ -45,12 +45,12 @@
 }
 #select {
   position: absolute;
-  top: 380px;
-  left: 590px;
+  top: 385px;
+  left: 540px;
 }
 #play-button:hover {
   background-color: #696969;
-}    
+}
 
 .ticks {
   font-size: 10px;

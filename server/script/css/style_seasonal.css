@@ -37,6 +37,7 @@ html, body {
   width: 580px;
   height: 650px;
   float: center;
+  font-size:20px;
 }
 
 .load path:hover{

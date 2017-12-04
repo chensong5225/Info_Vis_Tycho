@@ -13,7 +13,7 @@ var startDate = 1916,
 var svg = d3.select("#vis")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);  
+    .attr("height", height + margin.top + margin.bottom);
 
 ////////// slider //////////
 var disease = 'DIPHTHERIA';
@@ -44,7 +44,7 @@ var scale = 8
 var w = 20
 var SCALE = 1000 //control size of map
 var playButton = d3.select("#play-button");
-    
+
 
 var usDataUrl = "script/map/us-states.json",
     citiesDataUrl = 'script/map/data_year_city.json';
@@ -57,9 +57,9 @@ var projection = d3.geo.albersUsa()
     .scale([SCALE]);
 
 var x = d3.scaleLinear()
-      .domain([startDate,endDate])  
+      .domain([startDate,endDate])
       .range([0,targetValue])
-      .clamp(true);; 
+      .clamp(true);;
 
 var slider = svg.append("g")
     .attr("class", "slider")
@@ -79,7 +79,7 @@ slider.append("line")
         .on("start drag", function() {
          //console.log(currentValue)
           currentValue = d3.event.x;
-          update(x.invert(currentValue),disease); 
+          update(x.invert(currentValue),disease);
         })
     );
 
@@ -100,13 +100,13 @@ var handle = slider.insert("circle", ".track-overlay")
     .attr("class", "handle")
     .attr("r", 9);
 
-var label = slider.append("text")  
+var label = slider.append("text")
     .attr("class", "label")
     .attr("text-anchor", "middle")
     .text(startDate)
     .attr("transform", "translate(0," + (-25) + ")")
 
- 
+
 
 d3.tsv("script/map/us-state-names.tsv", function(error, name) {
   name.forEach(function(d) {
@@ -150,13 +150,12 @@ function updatemap(){
     })
   })
 }
-  
+
 function step() {
   update(x.invert(currentValue),disease);
   currentValue = currentValue + (targetValue/151);
   if (currentValue > targetValue) {
     moving = false;
-    currentValue = 0;
     clearInterval(timer);
     // timer = 0;
     playButton.text("Play");
@@ -258,7 +257,7 @@ svg.append('g')
       .on('mouseout',function(d,i){
           legendmouseout(rbn)
       })
-      
+
 
   svg.append('g')
     .attr('class','legend_text')
@@ -343,4 +342,3 @@ function mousemovemap(d,rbn,nbn) {
   // function click(d){
   //   console.log(d)
   // }
-

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="LeMU">
 
-    <title>test</title>
+    <title>Spatial Pattern</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
@@ -15,7 +15,7 @@
   <script src="http://d3js.org/d3.v4.js"></script>
   <link type="text/css" href="script/css/statesmap.css" rel="stylesheet" />
   <link type="text/css" href="script/css/setting.css" rel="stylesheet" />
- 
+
   </head>
 
   <body>
@@ -25,10 +25,10 @@
         <nav>
           <ul class="nav nav-justified">
             <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="map.html">Map</a></li>
-            <li><a href="scatter.html">Scatterplot</a></li>
-            <li><a href="line.html">Linechart</a></li>
-            <li><a href="seasonal.html">Heatmap</a></li>
+            <li><a href="line.html">Trend</a></li>
+            <li><a href="scatter.html">Relationship with Economy</a></li>
+            <li><a href="seasonal.html">Seasonal</a></li>
+            <li class="active"><a href="map.html">Spatial Pattern</a></li>
           </ul>
         </nav>
       </div>
@@ -38,7 +38,7 @@
        Mouse over on each state shows specific rate and cases number.<br>
        Mouse over on legend can highlight states of that rate.
        <p id= "select" style="font-size: 15px">Diseases:<select id="disease" onchange="updatemap()"> </select></p>
-        <div id="vis">  
+        <div id="vis">
         </div>
         <div id="tooltip-container"></div>
         <button id="play-button">Play</button>

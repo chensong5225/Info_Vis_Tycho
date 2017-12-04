@@ -15,14 +15,14 @@ var margin = {top:0, right:50, bottom:0, left:50},
 var svg = d3.select("#vis")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);  
+    .attr("height", height + margin.top + margin.bottom);
 
 var c_num = [5000,3000,1000,200]
 var rateByname = d3.map();
 var numByname = d3.map();
 var gdprange = [20000,80000]
 raterange_conf = {'MUMPS':[0,0.15] ,'MEASLES':[0,0.5] ,'HEPATITIS A':[0,0.5] ,
-'RUBELLA':[0,0.1] ,'PERTUSSIS':[0,0.2],'POLIO':[0,0.2]}
+'RUBELLA':[0,0.1] ,'PERTUSSIS':[0,0.2]}
 var raterange = [0,0.01]
 
 ////////// slider /////////
@@ -41,7 +41,7 @@ color_config = [
 
 var flag = -1;
   bound = [0,0.01,0.02,0.04,0.08,0.15,0.3,0.8,1.5]
-  diseasegroup = ['MUMPS', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
+  diseasegroup = ['MUMPS', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS']
   diseasegroup.forEach(function(d){
   document.getElementById('disease').options.add(new Option(d,d));
 })
@@ -52,7 +52,7 @@ var scale = 8
 var w = 20
 var SCALE = 1000 //control size of map
 var playButton = d3.select("#play-button");
-    
+
 
 var usDataUrl = "script/map/us-states.json",
     citiesDataUrl = 'script/map/data_year_city.json';
@@ -69,9 +69,9 @@ d3.tsv("script/map/us-state-names.tsv", function(error, name) {
 
 
 var x = d3.scaleLinear()
-      .domain([startDate,endDate])  
+      .domain([startDate,endDate])
       .range([0,targetValue])
-      .clamp(true);; 
+      .clamp(true);;
 
 var slider = svg.append("g")
     .attr("class", "slider")
@@ -91,7 +91,7 @@ slider.append("line")
         .on("start drag", function() {
           //console.log(currentValue)
           currentValue = d3.event.x;
-          update(x.invert(currentValue),disease); 
+          update(x.invert(currentValue),disease);
         })
     );
 
@@ -113,7 +113,7 @@ var handle = slider.insert("circle", ".track-overlay")
     .attr("class", "handle")
     .attr("r", 9);
 
-var label = slider.append("text")  
+var label = slider.append("text")
     .attr("class", "label")
     .attr("text-anchor", "middle")
     .text(startDate)
@@ -192,7 +192,7 @@ function plotcoordinate(disease)
         y_Axis = d3.scaleLinear()
             .domain(raterange_conf[disease])
             .range([height - margins.top - margins.bottom -200, 0]);
-        
+
         svg.append("g").attr("class", "x axis").attr("transform", "translate(100," + (y_Axis.range()[0] +100)+ ")");
         svg.append("g").attr("class", "y axis").attr("transform", "translate(100," + 100 + ")");
 
@@ -216,7 +216,7 @@ function plotcoordinate(disease)
     var xAxis = d3.axisBottom(x_Axis).tickPadding(5);
     var yAxis = d3.axisLeft(y_Axis).tickPadding(5);
 
-    // this is where we select the axis we created a few lines earlier. See how we select the axis item. in our svg we appended a g element with a x/y and axis class. To pull that back up, we do this svg select, then 'call' the appropriate axis object for rendering.    
+    // this is where we select the axis we created a few lines earlier. See how we select the axis item. in our svg we appended a g element with a x/y and axis class. To pull that back up, we do this svg select, then 'call' the appropriate axis object for rendering.
     svg.selectAll("g.y.axis").call(yAxis);
     svg.selectAll("g.x.axis").call(xAxis);
 }
@@ -227,11 +227,11 @@ function plotscatter(data)
     data.forEach(function(d){
       rateByname.set(d.state, d.rate);
       numByname.set(d.state, d.cases);
-    }) 
+    })
     svg.selectAll('g.node').remove();
     //console.log(data)
     // now, we can get down to the data part, and drawing stuff. We are telling D3 that all nodes (g elements with class node) will have data attached to them. The 'key' we use (to let D3 know the uniqueness of items) will be the name. Not usually a great key, but fine for this example.
-    
+
     var year;
     var nodes = svg.selectAll("g.node").data(data, function (d) {
         year = d.year;
@@ -239,14 +239,14 @@ function plotscatter(data)
     });
 
     // we 'enter' the data, making the SVG group (to contain a circle and text) with a class node. This corresponds with what we told the data it should be above.
-    
+
     var nodesGroup = nodes.enter().append("g").attr("class", "node")
-    // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items 
+    // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items
     .attr('transform', function (d) {
         return "translate(" + (100+x_Axis(d.gdp))  + "," + (y_Axis(d.rate)+100) + ")";
     });
 
-    // we add our first graphics element! A circle! 
+    // we add our first graphics element! A circle!
     nodesGroup.append("circle")
         .style("stroke","white")
         .attr("r",function(d) {
@@ -283,7 +283,7 @@ function plotscatter(data)
 
 function updateplot(data)
 {
-    
+
     var year;
     data.forEach(function(d){
       rateByname.set(d.state, d.rate);
@@ -294,16 +294,16 @@ function updateplot(data)
     var nodes = svg.selectAll("g.node")
 
     // we 'enter' the data, making the SVG group (to contain a circle and text) with a class node. This corresponds with what we told the data it should be above.
-    
+
     var nodesGroup = svg.selectAll("g.node")
       .data(data)
-    // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items 
+    // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items
     nodesGroup.transition()
       .attr('transform', function (d) {
           return "translate(" + (100+x_Axis(d.gdp)) + "," + (y_Axis(d.rate)+100) + ")";
     });
 
-    // we add our first graphics element! A circle! 
+    // we add our first graphics element! A circle!
     nodesGroup.selectAll("circle")
         .style("stroke","white")
         .attr("r",function(d) {
@@ -429,9 +429,8 @@ svg.append('g')
         else
           return locx-14
     })
-    .attr("y",function(d) { 
+    .attr("y",function(d) {
       return locy-Math.sqrt(d)
   })
     .text(function(d){ return d})
 }
-
