@@ -323,11 +323,6 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_PO);
 
-//legend
-
-   // var svg = d3.select("div.legend").append(svg).attr("width",100).attr("height",30);
-   // legend(domain);
-
 //loaded graph
   var chart_D_load = circularHeatChart()
       .segmentHeight(8)
@@ -348,6 +343,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("height","100%")
       .attr("width","100%")
       .call(chart_D_load);
+
+      legend(svga);
 
 
       svga.selectAll("path")
@@ -387,6 +384,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_M_load);
 
+      legend(svgb);
+
       svgb.selectAll("path")
       .on('mouseover', function(d) {
           tooltip.select('.week').html("<b> Week: " + d.week + "</b>");
@@ -424,6 +423,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("height","100%")
       .attr("width","100%")
       .call(chart_S_load);
+
+      legend(svgc);
 
       svgc.selectAll("path")
       .on('mouseover', function(d) {
@@ -463,6 +464,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_ME_load);
 
+      legend(svgd);
+
       svgd.selectAll("path")
       .on('mouseover', function(d) {
           tooltip.select('.week').html("<b> Week: " + d.week + "</b>");
@@ -500,6 +503,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("height","100%")
       .attr("width","100%")
       .call(chart_H_load);
+
+      legend(svge);
 
       svge.selectAll("path")
       .on('mouseover', function(d) {
@@ -539,6 +544,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_R_load);
 
+      legend(svgf);
+
       svgf.selectAll("path")
       .on('mouseover', function(d) {
           tooltip.select('.week').html("<b> Week: " + d.week + "</b>");
@@ -577,6 +584,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_P_load);
 
+      legend(svgg);
+
       svgg.selectAll("path")
       .on('mouseover', function(d) {
           tooltip.select('.week').html("<b> Week: " + d.week + "</b>");
@@ -614,6 +623,8 @@ d3.json("data_week_state.json").get(function(error, data){
       .attr("width","100%")
       .call(chart_PO_load);
 
+      legend(svgh);
+
   svgh.selectAll("path")
   .on('mouseover', function(d) {
       tooltip.select('.week').html("<b> Week: " + d.week + "</b>");
@@ -636,48 +647,56 @@ d3.json("data_week_state.json").get(function(error, data){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#DIPHTHERIA-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#MUMPS").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#MUMPS-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#SMALLPOX").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#SMALLPOX-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#MEASLES").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#MEASLES-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#HEPATITIS").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#HEPATITIS-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#RUBELLA").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#RUBELLA-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#PERTUSSIS").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#PERTUSSIS-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
   document.querySelector("div#POLIO").addEventListener("click", function(){
       document.querySelector("div#first").style.display = "none";
       document.querySelector("div#POLIO-load").style.display = "block";
       document.querySelector("body").style.background = "lightgray";
+      document.querySelector("div.legend").style.display = "none";
   });
 
 //go back
@@ -685,48 +704,56 @@ d3.json("data_week_state.json").get(function(error, data){
       document.querySelector("div#DIPHTHERIA-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#MUMPS-load").addEventListener("click", function(){
       document.querySelector("div#MUMPS-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#SMALLPOX-load").addEventListener("click", function(){
       document.querySelector("div#SMALLPOX-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#MEASLES-load").addEventListener("click", function(){
       document.querySelector("div#MEASLES-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#HEPATITIS-load").addEventListener("click", function(){
       document.querySelector("div#HEPATITIS-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#RUBELLA-load").addEventListener("click", function(){
       document.querySelector("div#RUBELLA-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#PERTUSSIS-load").addEventListener("click", function(){
       document.querySelector("div#PERTUSSIS-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
   document.querySelector("div#POLIO-load").addEventListener("click", function(){
       document.querySelector("div#POLIO-load").style.display = "none";
       document.querySelector("div#first").style.display = "block";
       document.querySelector("body").style.background = "white";
+      document.querySelector("div.legend").style.display = "block";
   });
 
 
