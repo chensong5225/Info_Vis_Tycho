@@ -23,6 +23,8 @@
           '#7f0000'
       ]
 
+    mySlider.value(newValue);
+
     var flag = -1;
       bound = [0,0.01,0.02,0.04,0.08,0.15,0.3,0.8,1.5]
       diseasegroup = ['DIPHTHERIA', 'MUMPS', 'SMALLPOX', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
@@ -110,6 +112,7 @@
 
         }) //d3.json
       }
+      
       function city()
       {
         flag = -flag;

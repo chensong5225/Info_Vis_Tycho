@@ -1,11 +1,4 @@
 
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 960px; 
-  height: 500px;
-  position: relative;
-}
-
 .states {
   fill: none;
   stroke: #fff;
@@ -37,8 +30,8 @@ body {
 
 #play-button {
   position: absolute;
-  top: 140px;
-  left: 50px;
+  top: 305px;
+  left: 70px;
   background: #f08080;
   padding-right: 26px;
   border-radius: 3px;
@@ -50,7 +43,11 @@ body {
   cursor: pointer;
   height: 30px;
 }
-
+#select {
+  position: absolute;
+  top: 340px;
+  left: 780px;
+}
 #play-button:hover {
   background-color: #696969;
 }    

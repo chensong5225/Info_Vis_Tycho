@@ -1,3 +1,4 @@
+
       color_config = [
       '#fff7ec',
       '#fee8c8',
@@ -14,7 +15,7 @@
 
     year = 1990
     disease = 'MUMPS';
-    diseasegroup = ['MUMPS', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS', 'POLIO']
+    diseasegroup = ['MUMPS', 'MEASLES', 'HEPATITIS A', 'RUBELLA', 'PERTUSSIS']
     diseasegroup.forEach(function(d){
       document.getElementById('disease').options.add(new Option(d,d));
     })
@@ -30,7 +31,7 @@
     var height = 700;
     var gdprange = [20000,80000]
     raterange_conf = {'MUMPS':[0,0.15] ,'MEASLES':[0,0.5] ,'HEPATITIS A':[0,0.5] ,
-    'RUBELLA':[0,0.1] ,'PERTUSSIS':[0,0.2]}
+    'RUBELLA':[0,0.1] ,'PERTUSSIS':[0,0.2],'POLIO':[0,0.2]}
     var raterange = [0,0.01]
     // this will be our colour scale. An Ordinal scale.
     //var colors = d3.scale.category10();
@@ -97,7 +98,7 @@ function updatescatter(){
           });
 
     })
-}
+} 
 
 
 function showScatterPlot(data) {

@@ -4,7 +4,8 @@
 		<meta charset="utf-8">
 		<title>seasonal pattern of diseases</title>
 		<link rel="stylesheet" type="text/css" href="script/style_seasonal.css" >
-
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link type="text/css" href="script/setting.css" rel="stylesheet" />
 		<script src="script/d3.v3.js"></script>
 
 	</head>
@@ -12,10 +13,22 @@
 	<body>
 		<script type="text/javascript" src="script/seasonal_final.js"></script>
 		<script type="text/javascript" src="script/circularHeatChart.js"></script>
-
-		<h1 align="center">SEASONAL PATTERN OF DISEASES</h1>
-		<h3 align="center">Click each disease to see the details and click again to go back.</h3>
-
+    <div class="container">
+      <div class="masthead">
+        <h3 class="text-muted">Project name</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="scatter.html">Scatterplot</a></li>
+            <li><a href="line.html">Linechart</a></li>
+            <li class="active"><a href="seasonal.html">Heatmap</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="jumbotron">
+		<p>Click each disease to see the details and click again to go back.</p>
+  <div class="jumbotron">
     <div class = "legend"></div>
 		<div id="first">
 			<div class="aline">
@@ -42,7 +55,8 @@
 			<div class="load", id="PERTUSSIS-load", style="display:none;"><p align="center">PERTUSSIS, 1938-2010</div>
 			<div class="load", id="POLIO-load", style="display:none;"><p align="center">POLIO, 1928-1961</div>
 	  </div>
-
+    </div>
+  </div>
   </body>
 
 </html>
