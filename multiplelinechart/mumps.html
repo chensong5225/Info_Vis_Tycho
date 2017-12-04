@@ -128,8 +128,8 @@ d3.json("../data/data_disease.json", function(error, data) {
   .on("mouseover", function(d, i){
     d3.select(this).style("stroke", "navy");
     var fullname = code2name.get(d[i].state);
-    var rate = d[i].rate;
-    d3.select("#display").text("The name of the current state is " + fullname + ", " + "The rate of the disease is " + rate);
+    //var rate = d[i].rate;
+    d3.select("#display").text("The name of the current state is " + fullname);
   })
   .on("mouseout", function(d, i){
     d3.select(this).style("stroke", "#A569BD");
