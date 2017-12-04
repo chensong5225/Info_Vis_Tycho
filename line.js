@@ -4,9 +4,9 @@ var disease = 'MUMPS';
         top: 20,
         right: 150,
         bottom: 100,
-        left: 250
+        left: 50
       },
-      width = 1200 - margin.left - margin.right,
+      width = 1100 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
 
 
@@ -33,7 +33,7 @@ var disease = 'MUMPS';
         return y(d.temperature);
       });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#vis").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -58,7 +58,6 @@ d3.csv('data/data_country.csv',function(error,data){
       };
     });
 
-console.log(cities)
     x.domain(d3.extent(data, function(d) {
       return d.year;
     }));
@@ -109,13 +108,21 @@ console.log(cities)
 
     svg.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
-      .append("text")
+      .call(yAxis);
+
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .style('font-size','14px')
+      .attr("dx",905)
+      .attr("dy",515)
+      .text("Year");
+
+    svg.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 100)
-      .attr("dy", ".71em")
+      .attr("dx", 0)
+      .attr("dy", -40)
       .style("text-anchor", "end")
-      .text("Temperature (ºF)");
+      .text("Incidence Rate(%)");
 
     var city = svg.selectAll(".city")
       .data(cities)
@@ -231,7 +238,7 @@ console.log(cities)
             d3.select(this).select('text')
               .text(function (d){
                 if(y.invert(pos.y)!=0)
-                return d.name+":"+y.invert(pos.y).toFixed(2)+"%"});
+                  return d.name+"("+Math.floor(x.invert(pos.x))+"):"+y.invert(pos.y).toFixed(2)+"%"});
               
             return "translate(" + mouse[0] + "," + pos.y +")";
           });

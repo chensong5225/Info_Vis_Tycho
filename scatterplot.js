@@ -75,7 +75,7 @@ var x = d3.scaleLinear()
 
 var slider = svg.append("g")
     .attr("class", "slider")
-    .attr("transform", "translate(" + margin.left + "," + 80 + ")");
+    .attr("transform", "translate(" + margin.left + "," + 40 + ")");
 
 slider.append("line")
     .attr("class", "track")
@@ -163,7 +163,6 @@ function step() {
   currentValue = currentValue + (targetValue/151);
   if (currentValue > targetValue) {
     moving = false;
-    currentValue = 0;
     clearInterval(timer);
     // timer = 0;
     playButton.text("Play");
@@ -205,6 +204,14 @@ function plotcoordinate(disease)
             .attr("x", width / 2+100)
             .attr("y", height - margins.top - margins.bottom -50)
             .text("GDP");
+    svg.append("g")
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("dx", -100)
+      .attr("dy", 50)
+      .style("text-anchor", "end")
+      .text("Incidence Rate(%)");
+
     // this is the actual definition of our x and y axes. The orientation refers to where the labels appear - for the x axis, below or above the line, and for the y axis, left or right of the line. Tick padding refers to how much space between the tick and the label. There are other parameters too - see https://github.com/mbostock/d3/wiki/SVG-Axes for more information
     var xAxis = d3.axisBottom(x_Axis).tickPadding(5);
     var yAxis = d3.axisLeft(y_Axis).tickPadding(5);
@@ -226,21 +233,21 @@ function plotscatter(data)
     // now, we can get down to the data part, and drawing stuff. We are telling D3 that all nodes (g elements with class node) will have data attached to them. The 'key' we use (to let D3 know the uniqueness of items) will be the name. Not usually a great key, but fine for this example.
     
     var year;
-    var chocolate = svg.selectAll("g.node").data(data, function (d) {
+    var nodes = svg.selectAll("g.node").data(data, function (d) {
         year = d.year;
         return d.state;
     });
 
     // we 'enter' the data, making the SVG group (to contain a circle and text) with a class node. This corresponds with what we told the data it should be above.
     
-    var chocolateGroup = chocolate.enter().append("g").attr("class", "node")
+    var nodesGroup = nodes.enter().append("g").attr("class", "node")
     // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items 
     .attr('transform', function (d) {
         return "translate(" + (100+x_Axis(d.gdp))  + "," + (y_Axis(d.rate)+100) + ")";
     });
 
     // we add our first graphics element! A circle! 
-    chocolateGroup.append("circle")
+    nodesGroup.append("circle")
         .attr("r",function(d) {
         if(d.cases!=0)
             return Math.sqrt(d.cases)+2;
@@ -250,13 +257,7 @@ function plotscatter(data)
         .attr("class", "dot")
         .style("fill", function(d)
             {
-                if(d.rate == 0) return 'white';
-                if(d.rate >= bound[8]) return color_config[8];
-                for(i = 1;i<scale+1;i++)
-                {
-                  if(d.rate < bound[i])
-                    return color_config[i-1]
-                }
+              return color_config[5]
 
             })
         .on("mousemove",function(d) {
@@ -269,11 +270,12 @@ function plotscatter(data)
         });
 
     // now we add some text, so we can see what each item is.
-    chocolateGroup.append("text")
+    nodesGroup.append("text")
         .style("text-anchor", "middle")
         .attr("dy",function(d) {return -Math.sqrt(d.cases)-5})
+        .style("font-size",function(d){ if(d.cases == 0) return 0;})
         .text(function (d) {
-            // this shouldn't be a surprising statement.
+          if(d.cases > 0)
             return d.state;
     });
 }
@@ -288,20 +290,20 @@ function updateplot(data)
       year = d.year;
     })
     // now, we can get down to the data part, and drawing stuff. We are telling D3 that all nodes (g elements with class node) will have data attached to them. The 'key' we use (to let D3 know the uniqueness of items) will be the name. Not usually a great key, but fine for this example.
-    var chocolate = svg.selectAll("g.node")
+    var nodes = svg.selectAll("g.node")
 
     // we 'enter' the data, making the SVG group (to contain a circle and text) with a class node. This corresponds with what we told the data it should be above.
     
-    var chocolateGroup = svg.selectAll("g.node")
+    var nodesGroup = svg.selectAll("g.node")
       .data(data)
     // this is how we set the position of the items. Translate is an incredibly useful function for rotating and positioning items 
-    chocolateGroup.transition()
+    nodesGroup.transition()
       .attr('transform', function (d) {
           return "translate(" + (100+x_Axis(d.gdp)) + "," + (y_Axis(d.rate)+100) + ")";
     });
 
     // we add our first graphics element! A circle! 
-    chocolateGroup.selectAll("circle")
+    nodesGroup.selectAll("circle")
         .attr("r",function(d) {
         if(numByname.get(d.state)!=0)
             return Math.sqrt(numByname.get(d.state))+2;
@@ -311,13 +313,7 @@ function updateplot(data)
         .attr("class", "dot")
         .style("fill", function(d)
             {
-                if(rateByname.get(d.state) == 0) return 'white';
-                if(rateByname.get(d.state) >= bound[8]) return color_config[8];
-                for(i = 1;i<scale+1;i++)
-                {
-                  if(rateByname.get(d.state) < bound[i])
-                    return color_config[i-1]
-                }
+              return color_config[5]
             })
         .on("mousemove",function(d) {
                 $(this).attr("fill-opacity", "0.8");
@@ -328,13 +324,22 @@ function updateplot(data)
         });
 
 
+    nodesGroup.selectAll("text").remove();
     // now we add some text, so we can see what each item is.
-    chocolateGroup.selectAll("text")
-        .transition()
+    // chocolateGroup.selectAll("text")
+    //     .transition()
+    //     .style("text-anchor", "middle")
+    //     .attr("dy",function(d) {return -Math.sqrt(numByname.get(d.state))-5})
+    //     .text(function (d) {
+    //       if(d.cases > 0)
+    //         return d.state;
+    // });
+        nodesGroup.append("text")
         .style("text-anchor", "middle")
-        .attr("dy",function(d) {return -Math.sqrt(numByname.get(d.state))-5})
+        .attr("dy",function(d) {return -Math.sqrt(d.cases)-5})
+        .style("font-size",function(d){ if(d.cases == 0) return 0;})
         .text(function (d) {
-            // this shouldn't be a surprising statement.
+          if(d.cases > 0)
             return d.state;
     });
 }
@@ -369,34 +374,34 @@ function legend()
 
 var locx = 800
 var locy = 200
-svg.append('g')
-    .attr('class','legend')
-    .selectAll('rect')
-    .data(color_config)
-      .enter()
-      .append("rect")
-      .attr("fill", function(d,i) {  return color_config[i]})
-      .attr('x',function(d,i){return locx-270+i*w})
-      .attr('y',locy-60)
-      .attr('width',w)
-      .attr('height',w)
+// svg.append('g')
+//     .attr('class','legend')
+//     .selectAll('rect')
+//     .data(color_config)
+//       .enter()
+//       .append("rect")
+//       .attr("fill", function(d,i) {  return color_config[i]})
+//       .attr('x',function(d,i){return locx-270+i*w})
+//       .attr('y',locy)
+//       .attr('width',w)
+//       .attr('height',w)
 
-  svg.append('g')
-    .attr('class','legend_text')
-    .selectAll('text')
-    .data(bound)
-      .enter()
-      .append("text")
-      .style('font-size','12px')
-      .attr("x",function(d,i) {return locx-270+i*w-0.5*w})
-      .attr("y",function (d,i) {
-            if(i%2 == 1)
-              return locy-60-0.2*w;
-            else return locy-60 + 1.7*w})
-      .text(function(d,i) {
-        if(i == 8) return '>'+d
-        else
-          return d;})
+//   svg.append('g')
+//     .attr('class','legend_text')
+//     .selectAll('text')
+//     .data(bound)
+//       .enter()
+//       .append("text")
+//       .style('font-size','12px')
+//       .attr("x",function(d,i) {return locx-270+i*w-0.5*w})
+//       .attr("y",function (d,i) {
+//             if(i%2 == 1)
+//               return locy-0.2*w;
+//             else return locy + 1.7*w})
+//       .text(function(d,i) {
+//         if(i == 8) return '>'+d
+//         else
+//           return d;})
 
 svg.append('g')
     .attr('class','circle')

@@ -30,7 +30,7 @@
 
 #play-button {
   position: absolute;
-  top: 320px;
+  top: 280px;
   left: 200px;
   background: #f08080;
   padding-right: 26px;
@@ -45,8 +45,8 @@
 }
 #select {
   position: absolute;
-  top: 380px;
-  left: 590px;
+  top: 350px;
+  left: 770px;
 }
 #play-button:hover {
   background-color: #696969;

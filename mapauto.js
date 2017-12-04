@@ -139,7 +139,7 @@ function updatemap(){
       if (button.text() == "Pause") {
         moving = false;
         clearInterval(timer);
-        // timer = 0;
+        timer = 0;
         button.text("Play");
       } else {
         moving = true;
@@ -211,7 +211,7 @@ function draw()
 
 function updatestates(data)
 {
-    console.log(data)
+    //console.log(data)
     data.forEach(function(d){
       rateByname.set(code2name.get(d.state), d.rate);
       numByname.set(code2name.get(d.state), d.cases);
@@ -248,8 +248,8 @@ svg.append('g')
       .enter()
       .append("rect")
       .attr("fill", function(d,i) {  return color_config[i]})
-      .attr('x',function(d,i){return width/2+i*w+40})
-      .attr('y',150)
+      .attr('x',function(d,i){return width/2+i*w+140})
+      .attr('y',130)
       .attr('width',w)
       .attr('height',w)
       .on("mouseover",function(d,i){
@@ -267,11 +267,11 @@ svg.append('g')
       .enter()
       .append("text")
       .style('font-size','12px')
-      .attr("x",function(d,i) {return width/2+i*w-0.5*w+40})
+      .attr("x",function(d,i) {return width/2+i*w-0.5*w+140})
       .attr("y",function (d,i) {
             if(i%2 == 1)
-              return 150-0.2*w;
-            else return 150 + 1.7*w})
+              return 130-0.2*w;
+            else return 130 + 1.7*w})
       .text(function(d,i) {
         if(i == 8) return '>'+d
         else
