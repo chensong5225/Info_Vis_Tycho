@@ -51,7 +51,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_D = d3.extent(DIPHTHERIA, function(d){return d.cases; });
 
   var chart_D = circularHeatChart()
-      .segmentHeight(4)
+      .segmentHeight(2.75)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -87,7 +87,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_M = d3.extent(MUMPS, function(d){return d.cases; });
 
   var chart_M = circularHeatChart()
-      .segmentHeight(4)
+      .segmentHeight(2.75)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -123,7 +123,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_S = d3.extent(SMALLPOX, function(d){return d.cases; });
 
   var chart_S = circularHeatChart()
-      .segmentHeight(4)
+      .segmentHeight(2.75)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -160,7 +160,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_ME = d3.extent(MEASLES, function(d){return d.cases; });
 
   var chart_ME = circularHeatChart()
-      .segmentHeight(2.5)
+      .segmentHeight(1.75)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -196,7 +196,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_H = d3.extent(HEPATITIS, function(d){return d.cases; });
 
   var chart_H = circularHeatChart()
-      .segmentHeight(2.95)
+      .segmentHeight(2)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -232,7 +232,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_R = d3.extent(RUBELLA, function(d){return d.cases; });
 
   var chart_R = circularHeatChart()
-      .segmentHeight(4)
+      .segmentHeight(2.75)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -268,7 +268,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_P = d3.extent(PERTUSSIS, function(d){return d.cases; });
 
   var chart_P = circularHeatChart()
-      .segmentHeight(1.9)
+      .segmentHeight(1.3)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -304,7 +304,7 @@ d3.json("data/data_week_state.json").get(function(error, data){
   var domain_PO = d3.extent(POLIO, function(d){return d.cases; });
 
   var chart_PO = circularHeatChart()
-      .segmentHeight(4)
+      .segmentHeight(2.75)
       .innerRadius(0)
       .numSegments(52)
       .domain(domain)
@@ -767,15 +767,15 @@ d3.json("data/data_week_state.json").get(function(error, data){
       .enter()
       .append("rect")
       .attr("fill", function(d,i) { return color_config10[i]; })
-      .attr('x',function(d,i){ return 30+i*10; })
+      .attr('x',function(d,i){ return 36+i*10; })
       .attr('y',0)
       .attr('width',10)
       .attr('height',10)
       .attr('class',function(d,i){ return i+'';});
 
   g.append("text")
-      .text('Cases: 0........................................>5000')
-      .attr('x',2)
+      .text('Cases: 0.....................................>5000')
+      .attr('x',0)
       .attr('y',20)
       .attr("fill", "black")
       .attr('font-size',10);

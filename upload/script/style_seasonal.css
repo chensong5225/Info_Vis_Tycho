@@ -7,20 +7,20 @@ html, body {
 .aline {
   float: center;
   width: 100%;
-  height: 364px;
+  height: 250px;
   margin: auto;
 }
 
 .legend {
   float: center;
-  width: 1280px;
+  width: 900px;
   height: 30px;
   margin: auto;
 }
 
 .unload {
-  width: 312px;
-  height: 360px;
+  width: 225px;
+  height: 250px;
   float: left;
   background: lightgray;
   border-style: solid;
