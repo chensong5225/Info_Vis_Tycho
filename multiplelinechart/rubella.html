@@ -11,7 +11,7 @@
 <style>
 .line {
   fill: none;
-  stroke: #34495E;
+  stroke: #aaf745;
   stroke-width: 2px;
 }
 #display {
@@ -131,7 +131,7 @@ d3.json("../data/data_disease.json", function(error, data) {
     d3.select("#display").text("The name of the current state is " + fullname);
   })
   .on("mouseout", function(d, i){
-    d3.select(this).style("stroke", "#34495E");
+    d3.select(this).style("stroke", "#aaf745");
   });
 
 });
