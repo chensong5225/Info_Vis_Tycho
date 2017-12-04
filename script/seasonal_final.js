@@ -10,7 +10,7 @@ var color_config2 = ['#FFFFFF','#FF0000'];
 var color_config10 = ['#ffffff','#ffe5e5','#ffcccc','#ffb2b2','#ff9999','#ff7f7f','#ff6666','#ff4c4c','#ff3232','#ff1919','#ff0000'];
 
 
-d3.json("data_week_state.json").get(function(error, data){
+d3.json("../data/data_week_state.json").get(function(error, data){
 
   //console.log(data);
 
