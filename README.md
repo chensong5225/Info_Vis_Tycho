@@ -1,9 +1,9 @@
 # Information Visualization of Contagious Diseases Historical Data
 
 ## link to final report and website:
-[final report](https://github.com/chensong5225/Info_Vis_Tycho/blob/master/2415_fianl_report.pdf)
-[final report ppt](https://github.com/chensong5225/Info_Vis_Tycho/blob/master/2415_final_project.pdf)
-[final report website](http://picso.org:8889/~classinfovis2017fall/projects/group-05/)
+[final report](https://github.com/chensong5225/Info_Vis_Tycho/blob/master/2415_fianl_report.pdf)  
+[final report ppt](https://github.com/chensong5225/Info_Vis_Tycho/blob/master/2415_final_project.pdf)  
+[final report website](http://picso.org:8889/~classinfovis2017fall/projects/group-05/)  
 
 ## Data: Project Tycho
 
